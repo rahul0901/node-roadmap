@@ -12,10 +12,11 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', function(req,res){
-    res.send('Hi Backend!');
+    res.send('Hi Backend! Node Roadmap..');
 });
 
 app.use('/api/v1', route);
+// use is middlewear function..
 
 mongoose.connect(process.env.MongoUrl).then(()=>console.log('Database Connected!'));
 

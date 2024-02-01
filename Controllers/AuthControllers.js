@@ -5,28 +5,28 @@ import jwt from 'jsonwebtoken';
 export const Register = async (req, res) => {
     try {
 
-        const { userName, userEmail, userPassword, userNumber } = req.body;
+        // const { userName, userEmail, userPassword, userNumber } = req.body;
 
-        if (!userName || !userEmail || !userPassword || !userNumber) {
-            return res.status(404).json({ success: false, message: 'All fields Required!' });
-        }
+        // if (!userName || !userEmail || !userPassword || !userNumber) {
+        //     return res.status(404).json({ success: false, message: 'All fields Required!' });
+        // }
 
-        const hashedPassword = await bcyrpt.hash(userPassword);
+        // const hashedPassword = await bcyrpt.hash(userPassword);
 
-        const user = new UserModels({
-            name: userName,
-            email: userEmail,
-            password: hashedPassword,
-            number: userNumber
-        });
+        // const user = new UserModels({
+        //     name: userName,
+        //     email: userEmail,
+        //     password: hashedPassword,
+        //     number: userNumber
+        // });
 
-        const isEmailPresent = await UserModels.findOne({ email: userEmail });
+        // const isEmailPresent = await UserModels.findOne({ email: userEmail });
 
-        if (isEmailPresent) return res.status(404).json({ success: false, message: 'Email already exists!' });
+        // if (isEmailPresent) return res.status(404).json({ success: false, message: 'Email already exists!' });
 
-        if (isNumberPresent) return res.status(404).json({ success: false, message: 'Number already exists!' });
+        // if (isNumberPresent) return res.status(404).json({ success: false, message: 'Number already exists!' });
 
-        await user.save();
+        // await user.save();
 
         res.status(200).json({ success: true, message: 'Register Sucessfull!' })
 
@@ -38,19 +38,19 @@ export const Register = async (req, res) => {
 export const Login = async (req, res) => {
     try {
 
-        const { userEmail, userPassword } = req.body;
+        // const { userEmail, userPassword } = req.body;
 
-        if (!userEmail || !userPassword) {
-            return res.status(404).json({ success: false, message: 'All fields Required!' });
-        }
+        // if (!userEmail || !userPassword) {
+        //     return res.status(404).json({ success: false, message: 'All fields Required!' });
+        // }
 
-        const user = await UserModels.findOne({ email:userEmail });
+        // const user = await UserModels.findOne({ email:userEmail });
 
-        if (!user) return res.status(404).json({ success: false, message: 'Email id did not matched!' });
+        // if (!user) return res.status(404).json({ success: false, message: 'Email id did not matched!' });
 
-        const isPassword = await bcyrpt.compare(userPassword, user.password);
+        // const isPassword = await bcyrpt.compare(userPassword, user.password);
 
-        if (!isPassword) return res.status(404).json({ success: false, message: 'Password did not matched!' });
+        // if (!isPassword) return res.status(404).json({ success: false, message: 'Password did not matched!' });
 
         res.status(200).json({ success: true, message: 'Login Sucessfull!' });
 
