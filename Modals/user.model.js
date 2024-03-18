@@ -8,5 +8,3 @@ const user = new Schema({
 });
 
 export default mongoose.model('User', user);
-
-// at line10 first paraemter is User=> which will be ur database name..
