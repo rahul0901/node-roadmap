@@ -7,4 +7,4 @@ const user = new Schema({
     number: Number
 });
 
-export default mongoose.model('User', user);
+export default mongoose.model("User", user);
