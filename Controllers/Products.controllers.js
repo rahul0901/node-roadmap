@@ -64,3 +64,31 @@ export const addProduct = async (req, res) =>{
     }
     
 };
+
+
+export const filterProducts = async (req, res) =>{
+
+    try {
+        
+        const { skip, page, query, sorting } = req.body;
+
+        const updatedQuery = { pcategory: query };
+
+        const name = sorting.replace(/^-/, "");
+        
+        const order = sorting[0] == "-" ? "-" : "";
+
+        const updatedSorting = { [name]: order === "-" ? -1 : 1 };
+
+        // console.log(updatedSorting)
+
+        const product = await productModal.find(updatedQuery).skip(skip).limit(page).sort(updatedSorting);
+
+        if (!product) return res.status(404).json({ success: false, message: 'No products under this category..' })
+
+        return res.status(200).json({ success: true, message: 'Product found under this category', product })
+
+    } catch (error) {        
+        return res.status(500).json({success: false, message:'Add product API Error!'});      
+    }
+}
