@@ -70,9 +70,11 @@ export const filterProducts = async (req, res) =>{
 
     try {
         
-        const { skip, page, query, sorting } = req.body;
+        const { skip, page, query, sorting } = req.body;  //query, sorting
 
-        const updatedQuery = { pcategory: query };
+        const updatedQuery = {pcategory: query};
+
+        console.log(updatedQuery);
 
         const name = sorting.replace(/^-/, "");
         
@@ -80,9 +82,9 @@ export const filterProducts = async (req, res) =>{
 
         const updatedSorting = { [name]: order === "-" ? -1 : 1 };
 
-        // console.log(updatedSorting)
+        console.log(updatedSorting)
 
-        const product = await productModal.find(updatedQuery).skip(skip).limit(page).sort(updatedSorting);
+        const product = await productModal.find(updatedQuery).skip(skip).limit(page).sort(updatedSorting);  //.find(updatedQuery)
 
         if (!product) return res.status(404).json({ success: false, message: 'No products under this category..' })
 
@@ -91,4 +93,5 @@ export const filterProducts = async (req, res) =>{
     } catch (error) {        
         return res.status(500).json({success: false, message:'Add product API Error!'});      
     }
+    
 }
