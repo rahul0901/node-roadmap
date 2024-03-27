@@ -6,9 +6,14 @@ export const getAllProducts = async (req, res) =>{
     try {
         const product = await productModal.find({});
 
-        if(!product) return res.status(401).json({success:false, message:'Product not Available!'});
+        if(product.length){
+            return res.status(200).json({success:true, message:'All Products', product:product})
+        } 
+        else{
+            return res.status(404).json({success:false, message:'Product not Found!'});
+        }
 
-        return res.status(200).json({success:true, message:'All Products', product})
+        
 
     } catch (error) {
         return res.status(500).json({success:false, message: 'All Products API Error!'})
