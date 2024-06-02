@@ -1,1 +1,5 @@
 Frontend[React] --> Backend --> Database
+
+at the very start stage we will run index file with node index.js
+to use npm start we will add start key type in pacakge.json file..
+then install all necessary packages..
